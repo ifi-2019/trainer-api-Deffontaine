@@ -24,5 +24,19 @@ public class TrainerController {
         return this.trainerService.getTrainer(name);
     }
 
+    @PostMapping("/")
+    Trainer addTrainer(@RequestBody Trainer trainer){
+        return this.trainerService.createTrainer(trainer);
+    }
+
+    @PutMapping("/")
+    Trainer updateTrainer(@RequestBody Trainer trainer){
+        return this.trainerService.createTrainer(trainer);
+    }
+
+    @DeleteMapping("/{name}")
+    void deleteTrainer(@PathVariable String name){
+        this.trainerService.deleteTrainer(name);
+    }
 
 }

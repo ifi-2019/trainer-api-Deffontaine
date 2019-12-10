@@ -90,9 +90,11 @@ class TrainerControllerIntegrationTest {
 
     @Test
     void getAllTrainers_shouldReturnAshAndMisty() {
+        var trainerNotExist = "trainerNotExist";
+
         var trainers = this.restTemplate
                 .withBasicAuth(username, password)
-                .getForObject("http://localhost:" + port + "/trainers/", Trainer[].class);
+                .getForObject("http://localhost:" + port + "/trainers/all/" + trainerNotExist, Trainer[].class);
         assertNotNull(trainers);
         assertEquals(2, trainers.length);
 

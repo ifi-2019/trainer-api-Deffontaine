@@ -14,7 +14,7 @@ class TrainerServiceImplTest {
         var trainerRepo = mock(TrainerRepository.class);
         var trainerService = new TrainerServiceImpl(trainerRepo);
 
-        trainerService.getAllTrainers();
+        trainerService.getAllTrainers("trainerNotExist");
 
         verify(trainerRepo).findAll();
     }

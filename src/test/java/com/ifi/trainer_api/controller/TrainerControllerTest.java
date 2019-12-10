@@ -26,9 +26,9 @@ class TrainerControllerTest {
 
     @Test
     void getAllTrainers_shouldCallTheService() {
-        trainerController.getAllTrainers();
+        trainerController.getAllTrainers("trainerNotExist");
 
-        verify(trainerService).getAllTrainers();
+        verify(trainerService).getAllTrainers("trainerNotExist");
     }
 
     @Test
@@ -52,11 +52,11 @@ class TrainerControllerTest {
     @Test
     void getAllTrainers_shouldBeAnnotated() throws NoSuchMethodException {
         var getAllTrainers =
-                TrainerController.class.getDeclaredMethod("getAllTrainers");
+                TrainerController.class.getDeclaredMethod("getAllTrainers", String.class);
         var getMapping = getAllTrainers.getAnnotation(GetMapping.class);
 
         assertNotNull(getMapping);
-        assertArrayEquals(new String[]{"/"}, getMapping.value());
+        assertArrayEquals(new String[]{"/all/{name}"}, getMapping.value());
     }
 
     @Test

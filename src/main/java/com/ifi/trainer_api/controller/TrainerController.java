@@ -14,9 +14,9 @@ public class TrainerController {
         this.trainerService = trainerService;
     }
 
-    @GetMapping("/")
-    Iterable<Trainer> getAllTrainers(){
-        return this.trainerService.getAllTrainers();
+    @GetMapping("/all/{name}")
+    Iterable<Trainer> getAllTrainers(@PathVariable String name){
+        return this.trainerService.getAllTrainers(name);
     }
 
     @GetMapping("/{name}")

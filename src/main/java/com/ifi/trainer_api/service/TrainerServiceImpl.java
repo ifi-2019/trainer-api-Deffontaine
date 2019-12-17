@@ -5,6 +5,7 @@ import com.ifi.trainer_api.repository.TrainerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.Iterator;
 
 @Service
@@ -19,15 +20,11 @@ public class TrainerServiceImpl implements TrainerService {
 
     @Override
     public Iterable<Trainer> getAllTrainers(String name) {
-        var trainers = this.trainerRepository.findAll();
+        var trainers = (ArrayList<Trainer>) this.trainerRepository.findAll();
 
-        Iterator i = trainers.iterator();
-        Trainer t;
-        while (i.hasNext()) {
-            t = (Trainer) i.next();
+        for (Trainer t: trainers) {
             if (t.getName().equals(name)) {
-                i.remove();
-                break;
+                trainers.remove(t);
             }
         }
         return trainers;
